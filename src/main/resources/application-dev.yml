@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: coder
+server:
+  port: 8801
+  servlet:
+    context-path: /api
+# springdoc-openapi
+springdoc:
+  group-configs:
+    - group: 'default'
+      packages-to-scan: com.yww.coder.controller
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
