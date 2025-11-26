@@ -33,8 +33,6 @@ build/
 .vscode/
 
 ### mvnw ###
-mvnw
-mvnw.cmd
 maven-wrapper.properties
 
 ### application ###
