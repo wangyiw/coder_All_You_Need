@@ -3,7 +3,6 @@ package com.yww.coder.core.customException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.yww.coder.core.enums.base.InvalidOperationSubStatusEnum;
 import com.yww.coder.core.enums.base.StatusEnum;
 import com.yww.coder.core.result.BaseException;
 import com.yww.coder.core.result.BaseResponse;
@@ -27,10 +26,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public BaseResponse<?> baseExceptionHandler(BaseException e) {
         log.error("BaseException: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(
-                e.getStatusEnum(),
-                e.getResultSubStatusEnum(),
-                e.getDetails());
+        return ResultFactory.getFailureResult(e.getStatusEnum(), e.getMessage());
     }
 
     /**
@@ -39,10 +35,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse<?> runtimeExceptionHandler(RuntimeException e) {
         log.error("RuntimeException: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(
-                StatusEnum.INVALID_OPERATION,
-                InvalidOperationSubStatusEnum.SYSTEM_ERROR,
-                "系统错误");
+        return ResultFactory.getFailureResult(StatusEnum.INVALID_OPERATION, "系统错误");
     }
 
     /**
@@ -51,9 +44,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BaseResponse<?> exceptionHandler(Exception e) {
         log.error("Exception: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(
-                StatusEnum.INVALID_OPERATION,
-                InvalidOperationSubStatusEnum.SYSTEM_ERROR,
-                "系统内部异常");
+        return ResultFactory.getFailureResult(StatusEnum.INVALID_OPERATION, "系统内部异常");
     }
 }

@@ -12,7 +12,6 @@ import org.springframework.util.CollectionUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yww.coder.core.enums.base.InvalidOperationSubStatusEnum;
 import com.yww.coder.core.result.InvalidOperationException;
 
 /**
@@ -124,7 +123,7 @@ public class JacksonTreeUtil {
             // throw new
             // InvalidOperationException(InvalidOperationSubStatusEnum.JSON_TRANSFORMATION_FAIL,
             // "Jackson json格式转换异常");
-            throw new InvalidOperationException(InvalidOperationSubStatusEnum.DATA_ADD_FAIL, "Jackson json格式转换异常");
+            throw new InvalidOperationException("Jackson json格式转换异常");
         }
 
         List<Map<String, Object>> returnList = new ArrayList<>();

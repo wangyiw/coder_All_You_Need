@@ -1,7 +1,5 @@
 package com.yww.coder.core.customException;
 
-import com.yww.coder.core.enums.base.InvalidOperationSubStatusEnum;
-import com.yww.coder.core.enums.base.ResultSubStatus;
 import com.yww.coder.core.enums.base.StatusEnum;
 import com.yww.coder.core.result.BaseException;
 import com.yww.coder.core.result.InvalidContentException;
@@ -13,30 +11,15 @@ import com.yww.coder.core.result.InvalidOperationException;
  */
 public class ThrowUtils {
 
-    // ==================== BaseException 体系方法 ====================
-
     /**
      * 条件成立则抛出 InvalidOperationException
      *
      * @param condition 条件
-     * @param subStatus 子状态枚举
+     * @param message   错误消息
      */
-    public static void throwIf(boolean condition, InvalidOperationSubStatusEnum subStatus) {
+    public static void throwIf(boolean condition, String message) {
         if (condition) {
-            throw new InvalidOperationException(subStatus);
-        }
-    }
-
-    /**
-     * 条件成立则抛出 InvalidOperationException（带详细描述）
-     *
-     * @param condition 条件
-     * @param subStatus 子状态枚举
-     * @param details   详细描述
-     */
-    public static void throwIf(boolean condition, InvalidOperationSubStatusEnum subStatus, String details) {
-        if (condition) {
-            throw new InvalidOperationException(subStatus, details);
+            throw new InvalidOperationException(message);
         }
     }
 
@@ -56,25 +39,17 @@ public class ThrowUtils {
      * 条件成立则抛出指定状态的异常
      *
      * @param condition  条件
-     * @param statusEnum 主状态枚举
-     * @param subStatus  子状态枚举
-     * @param details    详细描述
+     * @param statusEnum 状态枚举
+     * @param message    错误消息
      */
-    public static void throwIf(boolean condition, StatusEnum statusEnum, ResultSubStatus subStatus, String details) {
+    public static void throwIf(boolean condition, StatusEnum statusEnum, String message) {
         if (condition) {
             switch (statusEnum) {
                 case INVALID_CONTENT:
-                    throw new InvalidContentException(
-                            (com.yww.coder.core.enums.base.InvalidContentSubStatusEnum) subStatus,
-                            details);
+                    throw new InvalidContentException(message);
                 case INVALID_OPERATION:
-                    throw new InvalidOperationException(
-                            (InvalidOperationSubStatusEnum) subStatus,
-                            details);
                 default:
-                    throw new InvalidOperationException(
-                            InvalidOperationSubStatusEnum.OTHER,
-                            details);
+                    throw new InvalidOperationException(message);
             }
         }
     }

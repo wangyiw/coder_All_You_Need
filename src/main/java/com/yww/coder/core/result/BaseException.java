@@ -1,6 +1,5 @@
 package com.yww.coder.core.result;
 
-import com.yww.coder.core.enums.base.ResultSubStatus;
 import com.yww.coder.core.enums.base.StatusEnum;
 
 /**
@@ -29,23 +28,9 @@ public abstract class BaseException extends RuntimeException {
     }
 
     /**
-     * 获取主状态枚举
+     * 获取状态枚举
      * 
-     * @return 主状态枚举
+     * @return 状态枚举
      */
     public abstract StatusEnum getStatusEnum();
-
-    /**
-     * 获取子状态异常的详细描述
-     * 
-     * @return 子状态异常的详细描述
-     */
-    public abstract String getDetails();
-
-    /**
-     * 获取子状态枚举
-     * 
-     * @return 子状态枚举
-     */
-    public abstract ResultSubStatus getResultSubStatusEnum();
 }

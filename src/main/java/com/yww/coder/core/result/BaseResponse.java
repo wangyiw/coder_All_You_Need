@@ -1,10 +1,13 @@
 package com.yww.coder.core.result;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 
 /**
  * 返回结果封装
  */
+@Getter
 public class BaseResponse<T> implements Serializable {
 
     /**
@@ -13,30 +16,12 @@ public class BaseResponse<T> implements Serializable {
      * 0 表示成功
      * 1 表示失败
      */
-    private Integer statusCode;
+    private Integer code;
 
     /**
      * 主状态描述
      */
-    private String statusMsg;
-
-    /**
-     * 子状态码
-     * 状态由AbnormalEquipmentSubStatusEnum、InvalidContentSubStatusEnum、InvalidOperationSubStatusEnum、SuccessSubStatusEnum。枚举指定
-     */
-    private Integer subStatusCode;
-
-    /**
-     * 子状态描述
-     */
-    private String subStatusMsg;
-
-    /**
-     * 可选
-     * 详细描述
-     * 用于详细的描述错误信息
-     */
-    private String details;
+    private String message;
 
     /**
      * 可选
@@ -47,69 +32,31 @@ public class BaseResponse<T> implements Serializable {
     public BaseResponse() {
     }
 
-    public BaseResponse(Integer statusCode) {
-        this.statusCode = statusCode;
-        this.statusMsg = "";
+    public BaseResponse(Integer code) {
+        this.code = code;
+        this.message = "";
     }
 
-    public BaseResponse(Integer statusCode, String statusMsg, Integer subStatusCode, String subStatusMsg) {
-        this.statusCode = statusCode;
-        this.statusMsg = statusMsg;
-        this.subStatusCode = subStatusCode;
-        this.subStatusMsg = subStatusMsg;
+    public BaseResponse(Integer code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
-    public BaseResponse(Integer statusCode, String statusMsg, Integer subStatusCode, String subStatusMsg, T data) {
-        this.statusCode = statusCode;
-        this.statusMsg = statusMsg;
-        this.subStatusCode = subStatusCode;
-        this.subStatusMsg = subStatusMsg;
+    public BaseResponse(Integer code, String message, T data) {
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
-    public BaseResponse(Integer statusCode, String statusMsg, Integer subStatusCode, String subStatusMsg,
-            String details) {
-        this.statusCode = statusCode;
-        this.statusMsg = statusMsg;
-        this.subStatusCode = subStatusCode;
-        this.subStatusMsg = subStatusMsg;
-        this.details = details;
+
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
-    public BaseResponse(Integer statusCode, String statusMsg, Integer subStatusCode, String subStatusMsg,
-            String details,
-            T data) {
-        this.statusCode = statusCode;
-        this.statusMsg = statusMsg;
-        this.subStatusCode = subStatusCode;
-        this.subStatusMsg = subStatusMsg;
-        this.details = details;
-        this.data = data;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Integer getStatusCode() {
-        return statusCode;
-    }
-
-    public String getStatusMsg() {
-        return statusMsg;
-    }
-
-    public Integer getSubStatusCode() {
-        return subStatusCode;
-    }
-
-    public String getSubStatusMsg() {
-        return subStatusMsg;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public T getData() {
-        return data;
-    }
 
     public void setData(T data) {
         this.data = data;
@@ -118,11 +65,8 @@ public class BaseResponse<T> implements Serializable {
     @Override
     public String toString() {
         return "BaseResponse{" +
-                "statusCode=" + statusCode +
-                ", statusMsg='" + statusMsg + '\'' +
-                ", subStatusCode=" + subStatusCode +
-                ", subStatusMsg='" + subStatusMsg + '\'' +
-                ", details='" + details + '\'' +
+                "code=" + code +
+                ", message='" + message + '\'' +
                 ", data=" + data +
                 '}';
     }
