@@ -1,11 +1,11 @@
 package com.yww.coder.user.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import com.yww.coder.user.mapper.UserMapper;
-import com.yww.coder.user.model.entity.User;
-import com.yww.coder.user.service.UserService;
+import com.yww.coder.user.service.IUserService;
+
+import jakarta.annotation.Resource;
 
 /**
 * @author yyw
@@ -13,7 +13,9 @@ import com.yww.coder.user.service.UserService;
 * @createDate 2025-12-08 02:06:57
 */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User>
-{
+public class UserServiceImpl implements IUserService {
+
+    @Resource
+    private UserMapper userMapper;
 
 }

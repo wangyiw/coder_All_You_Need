@@ -1,7 +1,5 @@
 package com.yww.coder.user.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yww.coder.user.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity com.yww.coder.user.entity.model.User
 */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper {
 
 
 }

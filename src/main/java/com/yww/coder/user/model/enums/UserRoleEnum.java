@@ -1,4 +1,4 @@
-package com.yww.coder.model.enums;
+package com.yww.coder.user.model.enums;
 
 import cn.hutool.core.util.ObjUtil;
 import lombok.Getter;
