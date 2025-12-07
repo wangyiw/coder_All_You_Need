@@ -6,7 +6,7 @@
         <RouterLink to="/">
           <div class="header-left">
             <img class="logo" src="@/assets/logo.png" alt="Logo" />
-            <h1 class="site-title">鱼皮应用生成</h1>
+            <h1 class="site-title">CoderX</h1>
           </div>
         </RouterLink>
       </a-col>
@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import { h, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import type { MenuProps } from 'ant-design-vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 // 当前选中菜单
@@ -53,11 +53,6 @@ const menuItems = ref([
     key: '/about',
     label: '关于',
     title: '关于我们',
-  },
-  {
-    key: 'others',
-    label: h('a', { href: 'https://www.codefather.cn', target: '_blank' }, '编程导航'),
-    title: '编程导航',
   },
 ])
 
