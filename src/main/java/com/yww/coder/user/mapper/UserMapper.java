@@ -1,7 +1,8 @@
 package com.yww.coder.user.mapper;
 
+import com.yww.coder.user.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-
+import com.mybatisflex.core.BaseMapper;
 /**
 * @author yyw
 * @description 针对表【user(用户)】的数据库操作Mapper
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity com.yww.coder.user.entity.model.User
 */
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
 
 }

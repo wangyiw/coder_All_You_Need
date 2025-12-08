@@ -3,8 +3,10 @@ package com.yww.coder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableAsync;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.yww"})
+@EnableAsync
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class CoderApplication {
 

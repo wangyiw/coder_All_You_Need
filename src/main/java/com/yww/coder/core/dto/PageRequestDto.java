@@ -1,11 +1,14 @@
 package com.yww.coder.core.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
+import lombok.*;
 
 /**
  * 分页查询入参基础实体
  */
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode
 public class PageRequestDto {
 
     /**

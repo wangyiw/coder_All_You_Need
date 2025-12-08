@@ -43,3 +43,9 @@ application-pord.yml
 
 tests/
 logs/
+
+# application log files
+*.log
+logs/
+application-prod.yml
+application-local.yml

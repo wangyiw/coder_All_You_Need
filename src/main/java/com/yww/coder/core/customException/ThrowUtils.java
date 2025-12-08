@@ -1,5 +1,6 @@
 package com.yww.coder.core.customException;
 
+import com.yww.coder.core.enums.base.InvalidContentSubStatusEnum;
 import com.yww.coder.core.enums.base.StatusEnum;
 import com.yww.coder.core.result.BaseException;
 import com.yww.coder.core.result.InvalidContentException;
@@ -64,5 +65,8 @@ public class ThrowUtils {
         if (condition) {
             throw runtimeException;
         }
+    }
+
+    public static void throwIf(boolean condition, InvalidContentSubStatusEnum invalidContentSubStatusEnum, String 请求对象不能为空) {
     }
 }

@@ -1,6 +1,7 @@
 package com.yww.coder.core.result;
 
 import com.yww.coder.core.enums.base.StatusEnum;
+import com.yww.coder.core.enums.base.SuccessSubStatusEnum;
 
 /**
  * 返回对象封装工具类
@@ -27,6 +28,10 @@ public class ResultFactory {
     public static <T> BaseResponse<T> getSuccessResult(T data) {
         return new BaseResponse<>(StatusEnum.SUCCESS.getStatus(), StatusEnum.SUCCESS.getDescription(), data);
     }
+    
+    public static <T> BaseResponse<T> getSuccessResult(SuccessSubStatusEnum statusEnum, T data) {
+    return new BaseResponse<>(StatusEnum.SUCCESS.getStatus(), statusEnum.getDescription(), data);
+}
 
     /**
      * 获取成功结果（带消息和数据）
@@ -34,6 +39,7 @@ public class ResultFactory {
     public static <T> BaseResponse<T> getSuccessResult(String message, T data) {
         return new BaseResponse<>(StatusEnum.SUCCESS.getStatus(), message, data);
     }
+
 
     /**
      * 获取失败结果

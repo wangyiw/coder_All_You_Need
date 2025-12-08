@@ -8,7 +8,7 @@ import lombok.Getter;
 /**
  * 分页查询结果封装
  */
-@Getter
+
 public class PageResponseDto<T> implements Serializable {
 
     /**
@@ -41,6 +41,22 @@ public class PageResponseDto<T> implements Serializable {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public Integer getCurrent() {
+        return current;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public List<T> getList() {
+        return list;
     }
 
     public void setList(List<T> list) {

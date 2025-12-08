@@ -9,7 +9,9 @@ import com.yww.coder.core.result.BaseResponse;
 import com.yww.coder.core.result.ResultFactory;
 
 import io.swagger.v3.oas.annotations.Hidden;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 全局异常处理器
@@ -17,8 +19,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Hidden
 @RestControllerAdvice
-@Slf4j
 public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * 处理 BaseException 异常（core 包的异常体系）

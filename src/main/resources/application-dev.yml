@@ -1,18 +1,93 @@
-spring:
-  application:
-    name: coder
 server:
   port: 8801
   servlet:
     context-path: /api
-# springdoc-openapi
-springdoc:
-  group-configs:
-    - group: 'default'
-      packages-to-scan: com.yww.coder.controller
+spring:
+  application:
+    name: coder
+  profiles:
+    include: local
+  #  elasticsearch:
+  #    password: EBH7EUd8JmgJEtwkzQtA
+  #    username: elastic
+  #    uris: http://localhost:9200
+  # mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3308/coder_ai?rewriteBatchedStatements=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: <your-db-username>
+    password: <your-db-password>
+  # redis
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+#      password: 123456
+      ttl: 3600
+# AI
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: https://api.deepseek.com
+      api-key: <your-api-key>
+      model-name: deepseek-chat
+      max-tokens: 8192
+      log-requests: false
+      log-responses: false
+    streaming-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: <your-api-key>
+      model-name: deepseek-chat
+      max-tokens: 8192
+      log-requests: false
+      log-responses: false
+    # 推理 AI 模型配置（用于复杂的推理任务）
+    reasoning-streaming-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: <your-api-key>
+      model-name: deepseek-chat
+      max-tokens: 8192
+      temperature: 0.1
+      log-requests: false
+      log-responses: false
+    # 智能路由 AI 模型配置
+    routing-chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: <your-api-key>
+      model-name: qwen-turbo
+      max-tokens: 100
+      log-requests: false
+      log-responses: false
+# 添加 0SS 对象存储配置（需要从腾讯云获取）
+oss:
+  endpoint: http://oss-cn-hangzhou.aliyuncs.com
+  accessKeyId: <your-oss-access-key-id>
+  accessKeySecret: <your-oss-access-key-secret>
+  bucketName: <your-oss-bucket-name>
+# 阿里云 DashScope 配置
+dashscope:
+  api-key: <your-api-key>
+  image-model: wan2.2-t2i-flash
+# Pexels 图片搜索配置
+pexels:
+  api-key: <your-api-key>
+# 生产环境关闭日志
+mybatis-flex:
+  configuration:
+    log-impl: ''
 # knife4j
 knife4j:
   enable: true
   setting:
     language: zh_cn
 
+springdoc:
+  group-configs:
+    - group: 'default'
+      packages-to-scan: com.yww.coder
+
+
+# 部署路径
+code:
+  deploy-host: http://<Your IP>/dist
