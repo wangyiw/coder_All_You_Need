@@ -49,3 +49,6 @@ logs/
 logs/
 application-prod.yml
 application-local.yml
+
+# windsurf
+.windsurf

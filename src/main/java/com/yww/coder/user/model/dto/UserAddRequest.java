@@ -5,35 +5,32 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class UserRegisterRequestDto implements Serializable {
-    private static final long serialVersionUID = 3191241716373120793L;
+public class UserAddRequest implements Serializable {
+
     /**
-     * 昵称
+     * 用户昵称
      */
     private String userName;
+
     /**
      * 账号
      */
     private String userAccount;
+
     /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 确认密码
-     */
-    private String confirmPassword;
-    /**
-     * 头像
+     * 用户头像
      */
     private String userAvatar;
+
     /**
      * 用户简介
      */
     private String userProfile;
+
     /**
-     * 用户角色
+     * 用户角色: user, admin
      */
     private String userRole;
-    
+
+    private static final long serialVersionUID = 1L;
 }

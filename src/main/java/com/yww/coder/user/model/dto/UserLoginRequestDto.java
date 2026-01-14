@@ -1,13 +1,25 @@
 package com.yww.coder.user.model.dto;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class UserLoginRequestDto {
+public class UserLoginRequestDto implements Serializable {
+
+    private static final long serialVersionUID = 3191241716373120793L;
+
     /**
-     * 登录请求入参
+     * id
      */
     private String id;
-    private String userName;
+    /**
+     * 用户名
+     */
+    private String userAccount;
+    /**
+     * 密码
+     */
     private String password;
+
 }

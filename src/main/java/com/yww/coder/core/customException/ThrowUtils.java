@@ -67,6 +67,9 @@ public class ThrowUtils {
         }
     }
 
-    public static void throwIf(boolean condition, InvalidContentSubStatusEnum invalidContentSubStatusEnum, String 请求对象不能为空) {
+    public static void throwIf(boolean condition, InvalidContentSubStatusEnum invalidContentSubStatusEnum, String message) {
+        if (condition) {
+            throw new InvalidContentException(message);
+        }
     }
 }

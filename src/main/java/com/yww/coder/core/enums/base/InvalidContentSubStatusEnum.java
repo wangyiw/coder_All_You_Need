@@ -46,7 +46,8 @@ public enum InvalidContentSubStatusEnum implements ResultSubStatus {
     DATA_STATICS_FAILED(13, "文件解析失败"),
     JSON_TRANSFORMATION_FAIL(14, "json字符串解析异常"),
     DB_PERSISTENCE_FAILED(15, "数据库持久化失败"),
-    EXCEL_EXPORT_FAILED(16, "excel下载失败");
+    EXCEL_EXPORT_FAILED(16, "excel下载失败"), 
+    INVALID_CONTENT(17, "无效的内容");
 
     private final Integer subStatus;
 

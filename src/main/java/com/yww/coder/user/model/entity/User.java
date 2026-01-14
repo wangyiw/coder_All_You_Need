@@ -2,6 +2,11 @@ package com.yww.coder.user.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.codegen.Generator;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.Data;
 
 /**
@@ -11,9 +16,10 @@ import lombok.Data;
 @Data
 public class User implements Serializable {
     /**
-     * id
+     * id:主键，雪花算法id
      */
 
+    @Id(keyType = KeyType.Generator,value = KeyGenerators.snowFlakeId)
     private Long id;
 
     /**
