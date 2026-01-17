@@ -5,7 +5,6 @@ import java.util.Date;
 
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
-import com.mybatisflex.codegen.Generator;
 import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.Data;
 

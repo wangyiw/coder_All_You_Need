@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import com.mybatisflex.core.query.QueryWrapper;
+import com.yww.coder.common.dto.PageResponseDto;
+import com.yww.coder.common.result.InvalidContentException;
 import com.yww.coder.user.mapper.UserMapper;
 import com.yww.coder.user.model.dto.UserAddRequest;
 import com.yww.coder.user.model.dto.UserLoginResponseDto;
@@ -13,7 +15,6 @@ import com.yww.coder.user.model.dto.UserUpdateRequest;
 import com.yww.coder.user.model.entity.User;
 import com.yww.coder.user.model.enums.UserRoleEnum;
 import com.yww.coder.user.service.UserService;
-import com.yww.coder.core.result.InvalidContentException;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -379,6 +380,40 @@ public class UserServiceImpl implements UserService{
             return List.of();
         }
         return userList.stream().map(this::getLoginUserVO).collect(Collectors.toList());
+    }
+    /**
+     * 分页查询方法
+     */
+    @Override
+    public PageResponseDto<UserLoginResponseDto> userQueryPage(UserQueryRequest userQueryRequest) {
+        if (userQueryRequest == null) {
+            throw new InvalidContentException("查询条件不能为空");
+        }
+
+        // 查询全量（已在 queryUser 内部过滤 is_delete=0）
+        List<User> allList = this.queryUser(userQueryRequest);
+        int total = allList == null ? 0 : allList.size();
+
+        Integer current = userQueryRequest.getCurrent();
+        Integer size = userQueryRequest.getSize();
+        if (current == null || current < 1) {
+            current = 1;
+        }
+        if (size == null || size < 1) {
+            size = 10;
+        }
+
+        int fromIndex = Math.min((current - 1) * size, total);
+        int toIndex = Math.min(fromIndex + size, total);
+        List<User> pageList = allList == null ? List.of() : allList.subList(fromIndex, toIndex);
+        List<UserLoginResponseDto> safeList = this.getLoginUserVOList(pageList);
+
+        PageResponseDto<UserLoginResponseDto> pageResponse = new PageResponseDto<>();
+        pageResponse.setCurrent(current);
+        pageResponse.setSize(size);
+        pageResponse.setTotal(total);
+        pageResponse.setList(safeList);
+        return pageResponse;
     }
 }
 

@@ -2,6 +2,7 @@ package com.yww.coder.user.service;
 
 import java.util.List;
 
+import com.yww.coder.common.dto.PageResponseDto;
 import com.yww.coder.user.model.dto.UserAddRequest;
 import com.yww.coder.user.model.dto.UserLoginResponseDto;
 import com.yww.coder.user.model.dto.UserQueryRequest;
@@ -51,6 +52,9 @@ public interface UserService{
 
 
      List<UserLoginResponseDto> getLoginUserVOList(List<User> userList);
+
+
+     PageResponseDto<UserLoginResponseDto> userQueryPage(UserQueryRequest userQueryRequest);
 
 
 }

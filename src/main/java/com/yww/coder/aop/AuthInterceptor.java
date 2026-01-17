@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.yww.coder.annotation.AuthCheck;
-import com.yww.coder.core.result.InvalidContentException;
+import com.yww.coder.common.result.InvalidContentException;
 import com.yww.coder.user.model.entity.User;
 import com.yww.coder.user.model.enums.UserRoleEnum;
 import com.yww.coder.user.service.UserService;

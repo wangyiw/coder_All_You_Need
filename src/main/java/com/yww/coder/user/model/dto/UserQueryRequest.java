@@ -2,7 +2,7 @@ package com.yww.coder.user.model.dto;
 
 import java.io.Serializable;
 
-import com.yww.coder.core.dto.PageRequestDto;
+import com.yww.coder.common.dto.PageRequestDto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
