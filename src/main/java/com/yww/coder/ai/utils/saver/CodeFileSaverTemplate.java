@@ -23,7 +23,8 @@ public abstract class CodeFileSaverTemplate<T> {
     private static final String FILE_SAVE_ROOT_DIR = AppConstant.CODE_OUTPUT_ROOT_DIR;
     /**
      * 模板方法：保存代码的标准流程
-     *
+     * TODO 后续添加保存到OSS，返回值需要扩展为File或地址url的可选择对象，并重写抽象保存方法write
+     * 抽象两个方法：本地保存和OSS保存，新增一套OSS保存的抽象方法
      * @param result 代码结果对象
      * @param appId 应用 ID
      * @return 保存的目录

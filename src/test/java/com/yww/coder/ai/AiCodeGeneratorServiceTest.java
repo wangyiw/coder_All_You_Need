@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
+
+import java.time.Duration;
 
 @SpringBootTest
 @EnableAutoConfiguration(exclude = {
@@ -39,6 +43,17 @@ class AiCodeGeneratorServiceTest {
         Assertions.assertFalse(result.getCssCode().isBlank());
         Assertions.assertNotNull(result.getJsCode());
         Assertions.assertFalse(result.getJsCode().isBlank());
+    }
+    @Test
+    void generateMultiFileCodeStream() {
+        Flux<String> codeStream = aiCodeGenerateService.generateMultiFileCodeStream("实现一个yww的个人博客站，主要包括技术栈和最近的工作");
+        Assertions.assertNotNull(codeStream);
+
+        Assertions.assertTimeoutPreemptively(Duration.ofSeconds(60), () -> StepVerifier.create(codeStream
+                        .filter(chunk -> chunk != null && !chunk.isBlank())
+                        .take(1))
+                .expectNextMatches(chunk -> chunk != null && !chunk.isBlank())
+                .verifyComplete());
     }
 
     // @Test

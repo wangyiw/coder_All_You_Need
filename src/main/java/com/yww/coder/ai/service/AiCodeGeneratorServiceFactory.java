@@ -3,6 +3,8 @@ package com.yww.coder.ai.service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yww.coder.ai.model.enums.CodeGenerateTypeEnum;
+
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.service.AiServices;
@@ -29,6 +31,7 @@ public class AiCodeGeneratorServiceFactory {
                 .build();
     }
 
-    
-
+    public AiCodeGenerateService getAiCodeGenerateService(Long appId, CodeGenerateTypeEnum codeGenerateTypeEnum) {
+        return aiCodeGenerateService();
+    }
 }

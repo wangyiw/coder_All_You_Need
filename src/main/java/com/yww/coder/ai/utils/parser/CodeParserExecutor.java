@@ -3,7 +3,8 @@ package com.yww.coder.ai.utils.parser;
 import com.yww.coder.ai.model.enums.CodeGenerateTypeEnum;
 
 /**
- * 代码执行器
+ * 代码执行器：策略上下文类
+ * 根据枚举类型选择不同的解析器
  */
 public class CodeParserExecutor {
 
