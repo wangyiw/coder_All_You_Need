@@ -1,7 +1,6 @@
 package com.yww.coder.common.customException;
 
 import com.yww.coder.common.enums.base.InvalidContentSubStatusEnum;
-import com.yww.coder.common.enums.base.StatusEnum;
 import com.yww.coder.common.result.BaseException;
 import com.yww.coder.common.result.InvalidContentException;
 import com.yww.coder.common.result.InvalidOperationException;
@@ -37,21 +36,14 @@ public class ThrowUtils {
     }
 
     /**
-     * 条件成立则抛出指定状态的异常
+     * 条件成立则抛出指定子状态的异常
      *
-     * @param condition  条件
-     * @param statusEnum 状态枚举
-     * @param message    错误消息
+     * @param condition     条件
+     * @param subStatusEnum 子状态枚举
      */
-    public static void throwIf(boolean condition, StatusEnum statusEnum, String message) {
+    public static void throwIf(boolean condition, InvalidContentSubStatusEnum subStatusEnum) {
         if (condition) {
-            switch (statusEnum) {
-                case INVALID_CONTENT:
-                    throw new InvalidContentException(message);
-                case INVALID_OPERATION:
-                default:
-                    throw new InvalidOperationException(message);
-            }
+            throw new InvalidContentException(subStatusEnum);
         }
     }
 
@@ -67,9 +59,16 @@ public class ThrowUtils {
         }
     }
 
-    public static void throwIf(boolean condition, InvalidContentSubStatusEnum invalidContentSubStatusEnum, String message) {
+    /**
+     * 条件成立则抛出指定子状态的异常（自定义消息）
+     *
+     * @param condition     条件
+     * @param subStatusEnum 子状态枚举
+     * @param message       错误消息
+     */
+    public static void throwIf(boolean condition, InvalidContentSubStatusEnum subStatusEnum, String message) {
         if (condition) {
-            throw new InvalidContentException(message);
+            throw new InvalidContentException(subStatusEnum, message);
         }
     }
 }

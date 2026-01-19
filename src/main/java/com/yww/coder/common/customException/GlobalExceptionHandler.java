@@ -3,10 +3,10 @@ package com.yww.coder.common.customException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.yww.coder.common.enums.base.StatusEnum;
+import java.util.Collections;
+
 import com.yww.coder.common.result.BaseException;
 import com.yww.coder.common.result.BaseResponse;
-import com.yww.coder.common.result.ResultFactory;
 
 import io.swagger.v3.oas.annotations.Hidden;
 
@@ -24,12 +24,20 @@ public class GlobalExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
-     * 处理 BaseException 异常（core 包的异常体系）
+     * 处理 BaseException 异常
      */
     @ExceptionHandler(BaseException.class)
     public BaseResponse<?> baseExceptionHandler(BaseException e) {
         log.error("BaseException: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(e.getStatusEnum(), e.getMessage());
+        Integer subStatusCode = e.getSubStatusCode();
+        String message = e.getErrorMessage();
+        
+        // 如果异常有自定义消息，使用自定义消息
+        if (e.getMessage() != null && !e.getMessage().equals(message)) {
+            message = e.getMessage();
+        }
+        
+        return new BaseResponse<>(subStatusCode, message, Collections.emptyList());
     }
 
     /**
@@ -38,7 +46,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse<?> runtimeExceptionHandler(RuntimeException e) {
         log.error("RuntimeException: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(StatusEnum.INVALID_OPERATION, "系统错误");
+        return new BaseResponse<>(50000, "系统错误", Collections.emptyList());
     }
 
     /**
@@ -47,6 +55,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BaseResponse<?> exceptionHandler(Exception e) {
         log.error("Exception: {}", e.getMessage(), e);
-        return ResultFactory.getFailureResult(StatusEnum.INVALID_OPERATION, "系统内部异常");
+        return new BaseResponse<>(50000, "系统内部异常", Collections.emptyList());
     }
 }

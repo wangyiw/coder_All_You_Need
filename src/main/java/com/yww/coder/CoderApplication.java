@@ -6,7 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-@SpringBootApplication(scanBasePackages = {"com.yww"})
+import dev.langchain4j.community.store.embedding.redis.RedisEmbeddingStore;
+import dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreAutoConfiguration;
+
+@SpringBootApplication(scanBasePackages = {"com.yww"},exclude = RedisEmbeddingStoreAutoConfiguration.class)
 @EnableAsync
 @EnableAspectJAutoProxy(exposeProxy = true)
 @MapperScan("com.yww.coder.user.mapper")
