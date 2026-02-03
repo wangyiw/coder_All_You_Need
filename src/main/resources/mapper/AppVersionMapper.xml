@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yww.coder.genapp.mapper.AppVersionMapper">
+
+    <resultMap id="BaseResultMap" type="com.yww.coder.genapp.model.entity.AppVersion">
+            <id property="id" column="id" />
+            <result property="appId" column="app_id" />
+            <result property="version" column="version" />
+            <result property="initPrompt" column="init_prompt" />
+            <result property="codeGenType" column="code_gen_type" />
+            <result property="storageType" column="storage_type" />
+            <result property="storagePath" column="storage_path" />
+            <result property="status" column="status" />
+            <result property="errorMessage" column="error_message" />
+            <result property="userId" column="user_id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,app_id,version,init_prompt,code_gen_type,storage_type,
+        storage_path,status,error_message,user_id,create_time,
+        update_time
+    </sql>
+</mapper>

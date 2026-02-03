@@ -1,4 +1,4 @@
-package com.yww.coder.generator;
+package com.yww.coder.codeGenerator;
 
 import cn.hutool.core.lang.Dict;
 import cn.hutool.setting.yaml.YamlUtil;
